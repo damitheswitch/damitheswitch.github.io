@@ -10,7 +10,10 @@ import { site } from '../data/resume';
       I'm open to research collaborations, internships, freelance work, or just a good conversation
       about AI agents and computer vision.
     </p>
-    <a href={`mailto:${site.email}`} class="btn primary">say hello →</a>
+    <div class="cta-row">
+      <a href={`mailto:${site.email}`} class="btn primary">say hello →</a>
+      <a href="/Imad_Charradi.vcf" class="btn ghost">save contact ↓</a>
+    </div>
   </div>
 </section>
 
@@ -74,16 +77,25 @@ import { site } from '../data/resume';
     color: var(--text-dim);
   }
 
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
   .btn {
     font-family: var(--mono);
     font-size: 0.9rem;
     padding: 14px 30px;
     border-radius: 8px;
     display: inline-block;
-    margin-top: 40px;
     transition:
       transform 0.2s,
-      box-shadow 0.2s;
+      box-shadow 0.2s,
+      border-color 0.2s,
+      color 0.2s;
   }
 
   .btn.primary {
@@ -95,6 +107,17 @@ import { site } from '../data/resume';
   .btn.primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(52, 211, 153, 0.3);
+  }
+
+  .btn.ghost {
+    border: 1px solid var(--border-hover);
+    color: var(--text-dim);
+  }
+
+  .btn.ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
   }
 
   footer {

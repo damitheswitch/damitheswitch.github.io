@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Charradi;Imad;;;
+FN:Imad Charradi
+TITLE:AI Software Engineer
+ORG:Xidian University
+EMAIL;TYPE=INTERNET:charradiimad7@gmail.com
+TEL;TYPE=CELL,VOICE:+8613738003542
+TEL;TYPE=CELL,VOICE:+212787964464
+ADR;TYPE=WORK:;;Xi'an;Shaanxi;;China
+URL:https://www.linkedin.com/in/imad-charradi/
+URL:https://github.com/damitheswitch
+URL:https://x.com/MARCN3334/
+NOTE:AI Software Engineer · M.Sc. AI at Xidian University · AI agents, computer vision, backends.
+END:VCARD

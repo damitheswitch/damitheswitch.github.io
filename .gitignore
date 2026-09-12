@@ -4,6 +4,8 @@ dist/
 .DS_Store
 *.log
 
-# source documents (keep the public copy only)
+# source documents + build tooling (keep the public outputs only)
 _*.txt
+_*.css
 /*.pdf
+.ogbuild/
