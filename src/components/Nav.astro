@@ -18,7 +18,7 @@ const links = [
     </a>
 
     <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
-      <span class="mp">~/</span><span class="mt">menu</span>
+      <span class="bars"><span></span><span></span><span></span></span><span class="mt">menu</span>
     </button>
 
     <ul class="links" id="nav-links">
@@ -120,37 +120,55 @@ const links = [
 
   .menu-btn {
     display: none;
-    align-items: baseline;
+    align-items: center;
+    gap: 9px;
     background: none;
-    border: 1px solid var(--border);
-    border-radius: 7px;
+    border: none;
     cursor: pointer;
-    padding: 8px 14px;
+    padding: 8px 4px;
     font-family: var(--mono);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .menu-btn .bars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .menu-btn .bars span {
+    width: 15px;
+    height: 1.5px;
+    background: var(--text-dim);
     transition:
-      border-color 0.2s,
+      transform 0.25s,
+      opacity 0.25s,
       background 0.2s;
-  }
-
-  .menu-btn:hover,
-  .menu-btn.open {
-    border-color: var(--accent);
-    background: var(--accent-dim);
-  }
-
-  .menu-btn .mp {
-    color: var(--accent);
-    font-weight: 600;
   }
 
   .menu-btn .mt {
     color: var(--text-dim);
+    transition: color 0.2s;
   }
 
-  .menu-btn.open .mt,
-  .menu-btn:hover .mt {
-    color: var(--text);
+  .menu-btn:hover .mt,
+  .menu-btn:hover .bars span {
+    color: var(--accent);
+    background: var(--accent);
+  }
+
+  .menu-btn.open .bars span:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg);
+  }
+  .menu-btn.open .bars span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-btn.open .bars span:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
+  }
+
+  .menu-btn.open .mt {
+    color: var(--accent);
   }
 
   @media (max-width: 820px) {
