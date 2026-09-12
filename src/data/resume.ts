@@ -23,17 +23,15 @@ export const rotatorPhrases = [
 
 export const about = [
   "I'm passionate about building software that feels intelligent: AI agents that automate complex workflows, computer vision models that understand live video, and backend systems that tie everything together. I enjoy taking ideas from prototype to production.",
-  "I'm currently pursuing an M.Sc. in Artificial Intelligence at Xidian University. Before that, I worked as an AI Agent Engineer in Hangzhou, building production agent systems that generate images, video, and text for e-commerce automation.",
-  'Right now I\'m building The Real China, a community review platform where international students share honest takes on Chinese universities. It grew out of my own path: born in Morocco, now studying and working in China, speaking five languages and learning a sixth.',
+  "I'm currently pursuing an M.Sc. in Artificial Intelligence at Xidian University. Before that, I worked as an AI Agent Engineer in Hangzhou, building production agent systems for e-commerce automation.",
+  'Right now I\'m building The Real China, a community review platform where international students share honest takes on Chinese universities. It grew out of my own path: born in Morocco, now studying and working in China.',
 ];
 
 export const currently = [
-  'AI Agents & Multi-Agent Systems',
-  'Retrieval-Augmented Generation (RAG)',
-  'Computer Vision',
-  'LLM Engineering & MLOps',
   'Distributed AI Systems',
+  'LLM Engineering & MLOps',
   'Self-hosted AI Infrastructure',
+  'AI for Healthcare & Genomics',
 ];
 
 export interface ExperienceItem {
