@@ -1,63 +1,67 @@
-# imadcharradi.me — personal site
+# damitheswitch.github.io
 
-Astro single-page portfolio. Deployed on GitHub Pages, served on a custom `.me` domain.
+Personal site of **Imad Charradi** — AI Software Engineer.
+Single-page dark/terminal-themed portfolio: hero with a typewriter tagline,
+experience timeline, projects, skills, education, and a contact section with
+a channel picker + downloadable vCard.
+
+Live at **https://damitheswitch.github.io** (custom `.me` domain coming).
+
+## Stack
+
+- [Astro](https://astro.build) — static output, zero client JS framework
+- Self-hosted Inter + JetBrains Mono (variable woff2, no external requests)
+- Vanilla TS/JS only: typewriter rotator, scroll reveal, mobile nav,
+  contact popover, clipboard copy
+- GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`)
 
 ## Develop
 
 ```bash
 npm install
 npm run dev      # http://localhost:4321
-npm run build    # outputs to dist/
+npm run build    # outputs static site to dist/
 npm run preview  # preview the production build
 ```
 
-All site content lives in `src/data/resume.ts` — edit that one file to update
-experience, projects, skills, etc. Components render from it automatically.
+All site content lives in **`src/data/resume.ts`** — experience, projects,
+skills, education, languages, rotating tagline phrases. Edit that one file;
+every component renders from it.
 
-## Deploy (first time)
-
-### 1. Claim the free .me domain
-
-The free `.me` for students is the **Namecheap** offer inside the
-**GitHub Student Developer Pack**:
-
-1. Go to <https://education.github.com/pack> and sign up with your edu email.
-2. Once verified, find the Namecheap offer → free `.me` domain for 1 year
-   (+ free SSL via GitHub Pages' built-in HTTPS).
-
-### 2. Push this repo to GitHub
-
-```bash
-gh repo create personal-site --public --source=. --push
-# or create the repo on github.com and:
-git remote add origin https://github.com/damitheswitch/<repo>.git
-git push -u origin main
+```
+src/
+  data/resume.ts        <- all content
+  layouts/Base.astro    <- html shell, fonts, seo/og meta, global styles
+  components/           <- Nav, Hero, About, Experience, Projects,
+                           Skills, Education, Contact
+  pages/index.astro     <- composition
+public/
+  fonts/                <- self-hosted woff2
+  og-image.png          <- link preview card (1200x630)
+  Imad_Charradi_CV.pdf  <- downloadable resume
+  Imad_Charradi.vcf     <- downloadable contact card
 ```
 
-### 3. Enable GitHub Pages
+## Deploy
 
-Repo → **Settings → Pages → Source: GitHub Actions**.
-The workflow in `.github/workflows/deploy.yml` builds and deploys on every
-push to `main`.
+Pushes to `main` auto-deploy via the Actions workflow
+(Settings → Pages → Source: **GitHub Actions**).
 
-### 4. Point the .me domain at GitHub Pages
+### Custom domain (when the .me is claimed)
 
-In Namecheap → Domain List → Manage → **Advanced DNS**:
+The free `.me` for students is the Namecheap offer inside the
+[GitHub Student Developer Pack](https://education.github.com/pack).
 
-| Type      | Host | Value                    | TTL  |
-|-----------|------|--------------------------|------|
-| A Record  | `@`  | `185.199.108.153`        | Auto |
-| A Record  | `@`  | `185.199.109.153`        | Auto |
-| A Record  | `@`  | `185.199.110.153`        | Auto |
-| A Record  | `@`  | `185.199.111.153`        | Auto |
-| CNAME     | `www`| `damitheswitch.github.io`| Auto |
+1. Namecheap → Domain → **Advanced DNS**:
 
-(If you only want `www.yourdomain.me`, skip the A records and keep just the CNAME.)
+   | Type  | Host | Value                      |
+   |-------|------|----------------------------|
+   | A     | `@`  | `185.199.108.153`          |
+   | A     | `@`  | `185.199.109.153`          |
+   | A     | `@`  | `185.199.110.153`          |
+   | A     | `@`  | `185.199.111.153`          |
+   | CNAME | `www`| `damitheswitch.github.io`  |
 
-### 5. Tell GitHub about the domain
-
-1. Add `public/CNAME` containing just your domain, e.g. `imadcharradi.me`
-   (then commit + push).
-2. Update `site:` in `astro.config.mjs` to `https://yourdomain.me`.
-3. In repo Settings → Pages, enter the custom domain and tick
-   **Enforce HTTPS** once the cert provisions (a few minutes).
+2. `public/CNAME` containing just the domain (e.g. `imadcharradi.me`).
+3. `astro.config.mjs` → `site: 'https://yourdomain.me'`.
+4. Repo Settings → Pages → enter domain → **Enforce HTTPS**.

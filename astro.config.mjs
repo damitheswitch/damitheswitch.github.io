@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-// Set this to your real domain once you claim the free .me
-// e.g. 'https://imadcharradi.me'
+// Swap to the .me domain once claimed (and add public/CNAME):
+//   site: 'https://yourdomain.me'
 export default defineConfig({
-  site: 'https://imadcharradi.me',
+  site: 'https://damitheswitch.github.io',
 });
