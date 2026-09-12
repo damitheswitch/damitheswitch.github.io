@@ -1,0 +1,202 @@
+---
+import { education, certificates, languages, volunteering } from '../data/resume';
+---
+
+<section id="education">
+  <div class="container">
+    <p class="section-label">05 · background</p>
+    <h2 class="section-title">Education &amp; beyond</h2>
+
+    <div class="edu-grid">
+      <div class="col reveal">
+        <h3 class="col-label">education</h3>
+        {
+          education.map((e) => (
+            <div class="edu-item">
+              <p class="degree">{e.degree}</p>
+              <p class="school">{e.school}</p>
+              <p class="period">{e.period}</p>
+              {e.details && <p class="details">{e.details}</p>}
+            </div>
+          ))
+        }
+
+        <h3 class="col-label gap">languages</h3>
+        <ul class="langs">
+          {languages.map((l) => <li><span>{l.name}</span><em>{l.level}</em></li>)}
+        </ul>
+      </div>
+
+      <div class="col reveal">
+        <h3 class="col-label">certificates</h3>
+        {
+          certificates.map((c) => (
+            <div class="cert">
+              <div>
+                <p class="cert-name">{c.name}</p>
+                <p class="cert-issuer">{c.issuer}</p>
+              </div>
+              <span class="cert-date">{c.date}</span>
+            </div>
+          ))
+        }
+
+        <h3 class="col-label gap">volunteering</h3>
+        {
+          volunteering.map((v) => (
+            <div class="vol">
+              <p class="vol-role">
+                {v.role} <span class="vol-org">· {v.org}</span>
+              </p>
+              <p class="period">{v.period}</p>
+              <p class="details">{v.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .col-label {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .col-label.gap {
+    margin-top: 38px;
+  }
+
+  .edu-item {
+    border-left: 2px solid var(--border);
+    padding: 0 0 26px 20px;
+    position: relative;
+  }
+
+  .edu-item:last-of-type {
+    padding-bottom: 0;
+  }
+
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .degree {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .school {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-top: 3px;
+  }
+
+  .period {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--text-faint);
+    margin-top: 5px;
+  }
+
+  .details {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    margin-top: 8px;
+  }
+
+  .langs {
+    list-style: none;
+  }
+
+  .langs li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+  }
+
+  .langs li:last-child {
+    border-bottom: none;
+  }
+
+  .langs em {
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .cert {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cert:last-of-type {
+    border-bottom: none;
+  }
+
+  .cert-name {
+    font-size: 0.94rem;
+    font-weight: 500;
+  }
+
+  .cert-issuer {
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
+
+  .cert-date {
+    font-family: var(--mono);
+    font-size: 0.73rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+
+  .vol {
+    padding-bottom: 20px;
+  }
+
+  .vol-role {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .vol-org {
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 800px) {
+    .edu-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import { about, currently } from '../data/resume';
+---
+
+<section id="about">
+  <div class="container">
+    <p class="section-label">01 · about</p>
+    <h2 class="section-title">A bit about me</h2>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        {about.map((p) => <p>{p}</p>)}
+      </div>
+
+      <aside class="about-side reveal">
+        <h3>currently exploring</h3>
+        <ul>
+          {currently.map((c) => <li>{c}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-dim);
+    margin-bottom: 18px;
+    font-size: 1.02rem;
+  }
+
+  .about-side {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+
+  .about-side h3 {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .about-side ul {
+    list-style: none;
+  }
+
+  .about-side li {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    padding: 7px 0 7px 22px;
+    position: relative;
+  }
+
+  .about-side li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  @media (max-width: 800px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

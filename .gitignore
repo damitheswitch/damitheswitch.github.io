@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+
+# source documents (keep the public copy only)
+_cv_*.txt
+Imad Charradi - *.pdf
