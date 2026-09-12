@@ -245,6 +245,9 @@ const personSchema = {
   <body>
     <slot />
     <script>
+      if (new URLSearchParams(location.search).has('debug')) {
+        import('eruda').then((m) => m.default.init());
+      }
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
