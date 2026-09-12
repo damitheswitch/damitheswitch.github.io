@@ -102,7 +102,7 @@ x.com/MARCN3334 · therealchina.net (his live side project)
   to claim in ~2 months): add `public/CNAME` = domain, set `site:` in
   `astro.config.mjs`, Namecheap DNS (A → 185.199.108-111.153, CNAME www →
   damitheswitch.github.io), then Enforce HTTPS. Full table in README.
-- **QR code** for a phone sticker: interim codes live in `qr/` (gitignored) —
+- **QR code** for a phone sticker: interim codes live in `qr/` (tracked) —
   `qr-site.svg` + `qr-site.png`, error-correction H, black on white, encoding
   `https://damitheswitch.github.io/?src=qr`. GitHub Pages 301-redirects to the
   .me domain once configured, so these keep working; optionally regenerate
