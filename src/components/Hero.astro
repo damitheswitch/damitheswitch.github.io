@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/resume';
+import { site, rotatorPhrases } from '../data/resume';
 ---
 
 <section class="hero" id="top">
@@ -10,7 +10,13 @@ import { site } from '../data/resume';
         Imad Charradi<span class="accent">.</span>
       </h1>
       <h2 class="role">{site.role}</h2>
-      <p class="tagline">{site.tagline}</p>
+      <p class="tagline">
+        <span class="sr-only">{site.tagline}</span>
+        <span aria-hidden="true">
+          <span class="i">I</span>
+          <span id="typed"></span><span class="type-caret"></span>
+        </span>
+      </p>
 
       <div class="meta">
         <span class="meta-item">
@@ -69,7 +75,7 @@ import { site } from '../data/resume';
         <p><span class="p">$</span> cat focus.txt</p>
         <p class="out">ai-agents · computer-vision · backends</p>
         <p><span class="p">$</span> ./current_status</p>
-        <p class="out">m.sc. ai @ xidian — <span class="ok">building</span></p>
+        <p class="out">m.sc. ai @ xidian · <span class="ok">building trc</span></p>
         <p><span class="p">$</span> langs --spoken</p>
         <p class="out">ar · en · fr · zh · es</p>
         <p><span class="p">$</span> <span class="caret"></span></p>
@@ -135,8 +141,26 @@ import { site } from '../data/resume';
   .tagline {
     margin-top: 22px;
     max-width: 520px;
-    color: var(--text-dim);
-    font-size: 1.05rem;
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--text);
+    min-height: 1.65em;
+  }
+
+  .tagline .i {
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 2px;
+  }
+
+  .type-caret {
+    display: inline-block;
+    width: 8px;
+    height: 1.05em;
+    margin-left: 3px;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1.1s step-end infinite;
   }
 
   .meta {
@@ -315,3 +339,40 @@ import { site } from '../data/resume';
     }
   }
 </style>
+
+<script define:vars={{ phrases: rotatorPhrases }}>
+  const el = document.getElementById('typed');
+  if (el) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = phrases[0];
+    } else {
+      let pi = 0;
+      let ci = 0;
+      let deleting = false;
+      const tick = () => {
+        const phrase = phrases[pi];
+        if (!deleting) {
+          ci++;
+          el.textContent = phrase.slice(0, ci);
+          if (ci === phrase.length) {
+            deleting = true;
+            setTimeout(tick, 2000);
+            return;
+          }
+          setTimeout(tick, 55);
+        } else {
+          ci--;
+          el.textContent = phrase.slice(0, ci);
+          if (ci === 0) {
+            deleting = false;
+            pi = (pi + 1) % phrases.length;
+            setTimeout(tick, 400);
+            return;
+          }
+          setTimeout(tick, 28);
+        }
+      };
+      setTimeout(tick, 700);
+    }
+  }
+</script>

@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title = `${site.name} — ${site.role}`, description = site.tagline } = Astro.props;
+const { title = `${site.name} · ${site.role}`, description = site.tagline } = Astro.props;
 ---
 
 <!doctype html>
@@ -135,6 +135,18 @@ const { title = `${site.name} — ${site.role}`, description = site.tagline } = 
       .reveal.visible {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       @media (prefers-reduced-motion: reduce) {

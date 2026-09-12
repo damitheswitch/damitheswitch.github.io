@@ -12,10 +12,19 @@ export const site = {
   },
 };
 
+export const rotatorPhrases = [
+  'build AI agents.',
+  'do AI research at Xidian.',
+  'build computer vision systems.',
+  'am a software engineer.',
+  'am a grad student in China.',
+  'ship backends that scale.',
+];
+
 export const about = [
-  "I'm passionate about building software that feels intelligent — whether that's an AI agent automating complex workflows, a computer vision model understanding live video, or a backend system that ties everything together. I enjoy taking ideas from prototype to production.",
+  "I'm passionate about building software that feels intelligent: AI agents that automate complex workflows, computer vision models that understand live video, and backend systems that tie everything together. I enjoy taking ideas from prototype to production.",
   "I'm currently pursuing an M.Sc. in Artificial Intelligence at Xidian University. Before that, I worked as an AI Agent Engineer in Hangzhou, building production agent systems that generate images, video, and text for e-commerce automation.",
-  'I grew up in Morocco and have spent the last few years studying and working in China — a path that left me fluent across five languages and comfortable building across cultures.',
+  'Right now I\'m building The Real China, a community review platform where international students share honest takes on Chinese universities. It grew out of my own path: born in Morocco, now studying and working in China, speaking five languages and learning a sixth.',
 ];
 
 export const currently = [
@@ -37,21 +46,22 @@ export interface ExperienceItem {
 
 export const experience: ExperienceItem[] = [
   {
-    role: 'AI Agent Engineer — E-commerce Automation',
+    role: 'AI Agent Engineer · E-commerce Automation',
     org: 'Hangzhou Mokelili Technology Co., Ltd.',
     location: 'Hangzhou, China',
-    period: 'Jan 2026 — May 2026',
+    period: 'Jan 2026 - May 2026',
     bullets: [
-      'Architected and developed full-stack AI agent systems to automate multi-modal media generation (image, video, text).',
-      'Engineered robust API integration pipelines, web scrapers, and n8n workflows for automated content processing.',
-      'Designed website architecture and managed end-to-end self-hosting, testing, and deployment of production-oriented AI automation solutions.',
+      'Architected and developed full-stack AI agent systems for e-commerce automation: winning product selection, multi-modal content generation (image, video, text), and automated publishing across platforms.',
+      'Built data-driven analytics to measure ad performance and support optimized ad-spend decisions.',
+      'Engineered API integration pipelines, web scrapers, and n8n workflows for automated content processing.',
+      'Delivered production AI automation for online sellers and cross-border marketers with a small engineering team, managing self-hosting, testing, and deployment end to end.',
     ],
   },
   {
-    role: 'Python Engineer Intern — R&D',
+    role: 'Python Engineer Intern · R&D',
     org: 'DRONEMAR Morocco',
     location: 'Casablanca, Morocco',
-    period: 'May 2025 — Sep 2025',
+    period: 'May 2025 - Sep 2025',
     bullets: [
       'Worked on backend development, data processing pipelines, and system integration for autonomous drone operations.',
       'Contributed to the Drone Autonomous Flight monitoring platform as a Python engineer in the R&D department.',
@@ -62,7 +72,7 @@ export const experience: ExperienceItem[] = [
     role: 'Information Systems & Data Support Intern',
     org: 'JAD CARROSSERIE',
     location: 'Casablanca, Morocco',
-    period: 'Jun 2024 — Sep 2024',
+    period: 'Jun 2024 - Sep 2024',
     bullets: [
       'Automated internal workflows and data processing with Python scripts, saving 10+ hours of manual reporting weekly.',
       'Structured and managed MySQL databases for document digitization, querying, and reporting.',
@@ -76,34 +86,40 @@ export interface Project {
   subtitle?: string;
   description: string;
   tags: string[];
-  link?: string;
-  featured?: boolean;
+  repo?: string;
+  live?: string;
 }
 
 export const projects: Project[] = [
+  {
+    title: 'The Real China (TRC)',
+    subtitle: 'Live Product · Passion Project',
+    description:
+      'Community-driven platform where international students share honest reviews of Chinese universities. Born from navigating the process myself. Live in production: seeded directory of 580+ universities, no-login review flow, real users.',
+    tags: ['TypeScript', 'Supabase', 'Netlify', 'Full-Stack'],
+    repo: 'https://github.com/damitheswitch/therealchina',
+    live: 'https://therealchina.net',
+  },
   {
     title: 'Traffic Analysis & Vehicle Detection',
     subtitle: 'Undergraduate Thesis',
     description:
       'End-to-end computer vision pipeline for real-time traffic monitoring, multi-object tracking, and rule-violation detection. Fine-tuned custom detection models for vehicle attributes and optimized inference for live video streams.',
     tags: ['PyTorch', 'YOLO', 'OpenCV', 'Python'],
-    featured: true,
   },
   {
     title: 'AI Agent Platform',
     subtitle: 'Production System',
     description:
-      'Production AI agents capable of generating images, videos, and content while orchestrating complex e-commerce workflows through API pipelines, scrapers, and n8n automation.',
+      'Production AI agents generating images, videos, and content while orchestrating complex e-commerce workflows through API pipelines, scrapers, and n8n automation.',
     tags: ['Multi-Agent Systems', 'n8n', 'LLMs', 'Python'],
-    featured: true,
   },
   {
     title: 'Predictive Maintenance for Industrial Equipment',
     subtitle: 'ML Pipeline',
     description:
-      'End-to-end ML pipeline on 10,000 industrial sensor samples predicting binary equipment faults. Handled severe class imbalance with SMOTE and feature engineering — 98%+ accuracy and F1.',
+      'End-to-end ML pipeline on 10,000 industrial sensor samples predicting binary equipment faults. Handled severe class imbalance with SMOTE and feature engineering, reaching 98%+ accuracy and F1.',
     tags: ['XGBoost', 'Scikit-learn', 'Pandas', 'Python'],
-    featured: true,
   },
   {
     title: 'Voice Assistant with Mood Detection',
@@ -118,13 +134,6 @@ export const projects: Project[] = [
     description:
       'Secure, role-based web platform for automated exam grading with real-time analytics dashboards, custom authentication, and a scalable database schema via Django ORM.',
     tags: ['Django', 'REST APIs', 'PostgreSQL', 'Python'],
-  },
-  {
-    title: 'University Review Platform API',
-    subtitle: 'Open Source',
-    description: 'A RESTful API for university reviews with authentication and structured data models.',
-    tags: ['Python', 'REST', 'API Design'],
-    link: 'https://github.com/damitheswitch/university-review-platform-api',
   },
 ];
 
@@ -169,21 +178,21 @@ export interface Education {
 
 export const education: Education[] = [
   {
-    school: 'Xidian University — Xi’an, China',
+    school: 'Xidian University · Xi’an, China',
     degree: 'M.Sc. Artificial Intelligence and Technology',
-    period: 'Sep 2026 — Jun 2029',
+    period: 'Sep 2026 - Jul 2029',
     details: 'Graduate research student in the School of AI.',
   },
   {
-    school: 'China Jiliang University — Hangzhou, China',
+    school: 'China Jiliang University · Hangzhou, China',
     degree: 'B.Eng. Computer Science and Technology',
-    period: 'Sep 2022 — Jun 2026',
+    period: 'Sep 2022 - Jun 2026',
     details: 'GPA 86.3%. Merit-based scholarship awarded 4 years in a row.',
   },
 ];
 
 export const certificates = [
-  { name: 'Machine Learning Specialization', issuer: 'Coursera — Andrew Ng', date: 'Jul 2026' },
+  { name: 'Machine Learning Specialization', issuer: 'Coursera · Andrew Ng', date: 'Jul 2026' },
   { name: 'Intermediate Machine Learning', issuer: 'Kaggle', date: 'Sep 2025' },
   { name: 'Back-End Web Development', issuer: 'ALX Academy', date: 'Apr 2025' },
   { name: 'ALX Foundations', issuer: 'ALX Africa', date: 'Sep 2024' },
@@ -196,19 +205,20 @@ export const languages = [
   { name: 'French', level: 'C1' },
   { name: 'Mandarin', level: 'HSK 4' },
   { name: 'Spanish', level: 'B1' },
+  { name: 'German', level: 'Elementary' },
 ];
 
 export const volunteering = [
   {
     role: 'Project Leader',
-    org: 'ENACTUS — Faculté des Sciences Appliquées Ait Melloul',
-    period: 'Sep 2020 — Jun 2022',
+    org: 'ENACTUS · Faculté des Sciences Appliquées Ait Melloul',
+    period: 'Sep 2020 - Jun 2022',
     description: 'Led economic empowerment initiatives, guiding cross-functional student teams to deploy sustainable community projects.',
   },
   {
-    role: 'Team Member — B2C Marketing',
+    role: 'Team Member · B2C Marketing',
     org: 'AIESEC Agadir',
-    period: 'Feb 2022 — Jun 2022',
+    period: 'Feb 2022 - Jun 2022',
     description: 'Focused on leads and conversion, helping youth find opportunities worldwide.',
   },
 ];

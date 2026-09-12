@@ -5,5 +5,5 @@ dist/
 *.log
 
 # source documents (keep the public copy only)
-_cv_*.txt
-Imad Charradi - *.pdf
+_*.txt
+/*.pdf
