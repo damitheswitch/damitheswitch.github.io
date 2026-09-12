@@ -23,17 +23,23 @@ import { site } from '../data/resume';
         </button>
         <div class="hello-pop" id="hello-pop" role="menu" aria-label="Contact channels">
           <p class="pop-label">$ pick a channel</p>
-          <a role="menuitem" href={`mailto:${site.email}`} class="pop-item">
-            <span class="k">email</span><span class="v">open app ↗</span>
-          </a>
-          <button role="menuitem" id="copy-email" class="pop-item" type="button">
-            <span class="k">email</span><span class="v" id="copy-label">copy ⧉</span>
-          </button>
+          <div class="pop-item pop-row" role="group" aria-label="Email options">
+            <span class="k">email</span>
+            <span class="acts">
+              <a role="menuitem" href={`mailto:${site.email}`} class="act" aria-label="Open mail app" title="open mail app">↗</a>
+              <button role="menuitem" id="copy-email" class="act" aria-label="Copy email address" title="copy" type="button">
+                <span id="copy-label">⧉</span>
+              </button>
+            </span>
+          </div>
           <a role="menuitem" href={site.socials.linkedin} target="_blank" rel="noopener" class="pop-item">
             <span class="k">linkedin</span><span class="v">↗</span>
           </a>
           <a role="menuitem" href={site.socials.x} target="_blank" rel="noopener" class="pop-item">
             <span class="k">x</span><span class="v">↗</span>
+          </a>
+          <a role="menuitem" href={site.socials.github} target="_blank" rel="noopener" class="pop-item">
+            <span class="k">github</span><span class="v">↗</span>
           </a>
         </div>
       </div>
@@ -229,6 +235,48 @@ import { site } from '../data/resume';
     color: var(--accent);
   }
 
+  .pop-row:hover,
+  .pop-row:focus-visible {
+    background: none;
+    color: inherit;
+  }
+
+  .pop-row:hover .k {
+    color: var(--text);
+  }
+
+  .acts {
+    display: inline-flex;
+    gap: 6px;
+  }
+
+  .act {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-card);
+    color: var(--text-faint);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition:
+      border-color 0.15s,
+      color 0.15s,
+      background 0.15s;
+  }
+
+  .act:hover,
+  .act:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+    outline: none;
+  }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 36px 0;
@@ -305,8 +353,12 @@ import { site } from '../data/resume';
     try {
       await navigator.clipboard.writeText(email);
       if (copyLabel) {
-        copyLabel.textContent = 'copied ✓';
-        setTimeout(() => (copyLabel.textContent = 'copy ⧉'), 1600);
+        copyLabel.textContent = '✓';
+        copyLabel.style.color = 'var(--accent)';
+        setTimeout(() => {
+          copyLabel.textContent = '⧉';
+          copyLabel.style.color = '';
+        }, 1600);
       }
     } catch {
       window.location.href = 'mailto:' + email;
