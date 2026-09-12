@@ -12,7 +12,8 @@ Live at **https://damitheswitch.github.io** (custom `.me` domain coming).
 - [Astro](https://astro.build) — static output, zero client JS framework
 - Self-hosted Inter + JetBrains Mono (variable woff2, no external requests)
 - Vanilla TS/JS only: typewriter rotator, scroll reveal, mobile nav,
-  contact popover, clipboard copy
+  contact popover, clipboard copy, edge scroll rail with section
+  detents + synthesized sfx/haptics
 - GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`)
 
 ## Develop
@@ -27,6 +28,11 @@ npm run preview  # preview the production build
 All site content lives in **`src/data/resume.ts`** — experience, projects,
 skills, education, languages, rotating tagline phrases. Edit that one file;
 every component renders from it.
+
+Test on a real phone over LAN: `npm run dev -- --host`, then open
+`http://<PC-IP>:4321` on the same wifi. Append `?debug` to any URL for an
+on-device console (eruda) + `[rail]` interaction tracing — free for normal
+visitors since it only loads with the flag.
 
 ```
 src/

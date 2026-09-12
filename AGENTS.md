@@ -19,7 +19,8 @@ x.com/MARCN3334 · therealchina.net (his live side project)
   meta, global design tokens, `.reveal` scroll-animation + `.sr-only` utilities.
 - Components: `Nav`, `Hero` (typewriter), `About`, `Experience` (timeline),
   `Projects` (cards with repo+live icons), `Skills`, `Education` (edu/certs/langs/
-  volunteering), `Contact` (channel-picker popover + vCard).
+  volunteering), `Contact` (channel-picker popover + vCard),
+  `ScrollRail` (right-edge scroll widget: section ticks, detents, synth sfx, haptics).
 - `public/` — `fonts/` (self-hosted woff2), `og-image.png` (1200×630, generated),
   `favicon.svg`, `Imad_Charradi_CV.pdf`, `Imad_Charradi.vcf`.
 - Root dir also holds his source docs (CV/LinkedIn PDFs, `_*.txt` extracts) —
@@ -47,6 +48,32 @@ x.com/MARCN3334 · therealchina.net (his live side project)
 - **Verify before done:** `npm run build` must pass; eyeball via dev server +
   chrome-devtools screenshot when UI changes.
 
+## ScrollRail / mobile input quirks (learned the hard way, don't regress)
+
+- **iOS Safari `pointermove.clientY` is racy during programmatic scroll** — it
+  intermittently reports pageY/scroll-offset coordinates mid-gesture (observed:
+  3526, -5475 vs the true finger Y). Touch drags MUST be driven by
+  `touchmove.touches[0].clientY` (clean stream); `pointermove` handles
+  mouse/pen only. This bug caused violent page jumping on iOS.
+- Drag uses **detents**: latch within `CAP_PX` (8px) of a tick, `BREAK_PX` (15px)
+  of extra finger travel to escape, speed-gated (~18px/event) so flicks sail
+  through unlatched. Buzz on latch `[10,45,8]`, release 9ms.
+- Mobile: rail sits `right: 18px` — the extreme edge is iOS system territory
+  (scrollbar scrubber + forward-swipe gesture). Track is `touch-action: pan-y`
+  + tap-only jump (down+up <400ms, <10px); swipes over it scroll the page.
+  Thumb keeps `touch-action: none` + window-level `touchmove` preventDefault.
+- `measure()` is skipped while `dragging` (iOS toolbar collapse → resize →
+  recompute fracs mid-gesture = feedback loop). Re-measured once at drag end.
+  `dragRect` is cached at grab for the same reason.
+- **iOS haptics**: `navigator.vibrate` is a dead stub on Safari. Fallback is a
+  hidden label-wrapped `<input switch>` — click the LABEL, not the input, and
+  it only works iOS 17.4-26.4. Apple patched programmatic haptics in 26.5+
+  (needs trusted event + activation); there is no further web API. Haptics are
+  throttled 120ms (`lastHaptic`).
+- **`?debug` URL flag** loads eruda (on-device devtools) + `[rail]` event trace
+  (`dlog`/`dmark`, buffered per-drag dump). Zero cost without the flag — eruda
+  is a lazy chunk (devDep). Keep it; it caught the iOS bug.
+
 ## Environment quirks (Windows)
 
 - Shell is **PowerShell**: no bash heredocs/`ls -la`. Multi-line commit messages →
@@ -59,6 +86,15 @@ x.com/MARCN3334 · therealchina.net (his live side project)
 - Headless screenshots via chrome-devtools can show an olive tint on scrolled
   regions — capture artifact, not the page. Trust `getComputedStyle`.
 - Clipboard API is blocked in headless eval — verify copy features by code path.
+- **git ignores the Windows system proxy.** Direct github.com resets even with the
+  VPN on. Push with the proxy env on the command:
+  `git push` with `HTTPS_PROXY=http://localhost:15236` (find current port:
+  registry `HKCU:\...\Internet Settings` → ProxyServer; it changes per VPN session).
+- Phone testing over LAN: `npm run dev -- --host --force`, then
+  `http://<PC-IP>:4321` on the phone (same wifi; PC IP via `ipconfig`, the
+  192.168.0.x one). `?debug` + eruda works on-device for real iOS logs —
+  real iPhone is the only ground truth for Safari quirks; Chrome emulation
+  is Blink, Playwright-WebKit-in-Docker lacks iOS system chrome.
 
 ## Pending / future work
 
