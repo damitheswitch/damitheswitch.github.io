@@ -6,7 +6,38 @@ interface Props {
   description?: string;
 }
 
-const { title = `${site.name} · ${site.role}`, description = site.tagline } = Astro.props;
+const { title = `${site.name} · ${site.role}`, description = site.description } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: [site.handle, `@${site.handle}`],
+  url: canonical.href,
+  image: new URL('/og-image.png', Astro.site).href,
+  jobTitle: site.role,
+  description: site.description,
+  email: `mailto:${site.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: "Xi'an",
+    addressCountry: 'CN',
+  },
+  nationality: 'Morocco',
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Xidian University' },
+    { '@type': 'CollegeOrUniversity', name: 'China Jiliang University' },
+  ],
+  knowsLanguage: ['Arabic', 'English', 'French', 'Chinese', 'Spanish', 'German'],
+  sameAs: [
+    site.socials.github,
+    site.socials.linkedin,
+    site.socials.x,
+    'https://therealchina.net',
+  ],
+};
 ---
 
 <!doctype html>
@@ -16,10 +47,12 @@ const { title = `${site.name} · ${site.role}`, description = site.tagline } = A
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.site} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:image" content={new URL('/og-image.png', Astro.site)} />
     <meta property="og:image:width" content="1200" />
@@ -32,6 +65,7 @@ const { title = `${site.name} · ${site.role}`, description = site.tagline } = A
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/jbmono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <style is:global>
       @font-face {
         font-family: 'Inter';

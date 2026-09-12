@@ -1,7 +1,10 @@
 export const site = {
   name: 'Imad Charradi',
+  handle: 'damitheswitch',
   role: 'AI Software Engineer',
   tagline: 'I build AI agents, computer vision systems, and the backends that tie them together.',
+  description:
+    "Imad Charradi (@damitheswitch): AI software engineer building AI agents, computer vision systems, and backends. M.Sc. AI at Xidian University. Open to opportunities.",
   location: "Xi'an, China · Morocco",
   email: 'charradiimad7@gmail.com',
   cvUrl: '/Imad_Charradi_CV.pdf',
