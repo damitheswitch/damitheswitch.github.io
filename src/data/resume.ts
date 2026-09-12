@@ -14,11 +14,11 @@ export const site = {
 
 export const rotatorPhrases = [
   'build AI agents.',
-  'do AI research at Xidian.',
+  'shipped therealchina.net.',
+  'am an AI grad student at Xidian.',
   'build computer vision systems.',
-  'am a software engineer.',
-  'am a grad student in China.',
-  'ship backends that scale.',
+  'automate workflows end-to-end.',
+  'am open to opportunities.',
 ];
 
 export const about = [

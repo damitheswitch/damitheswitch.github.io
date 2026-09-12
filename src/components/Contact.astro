@@ -11,7 +11,32 @@ import { site } from '../data/resume';
       about AI agents and computer vision.
     </p>
     <div class="cta-row">
-      <a href={`mailto:${site.email}`} class="btn primary">say hello →</a>
+      <div class="hello-wrap">
+        <button
+          id="hello-btn"
+          class="btn primary"
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-controls="hello-pop"
+        >
+          say hello →
+        </button>
+        <div class="hello-pop" id="hello-pop" role="menu" aria-label="Contact channels">
+          <p class="pop-label">$ pick a channel</p>
+          <a role="menuitem" href={`mailto:${site.email}`} class="pop-item">
+            <span class="k">email</span><span class="v">open app ↗</span>
+          </a>
+          <button role="menuitem" id="copy-email" class="pop-item" type="button">
+            <span class="k">email</span><span class="v" id="copy-label">copy ⧉</span>
+          </button>
+          <a role="menuitem" href={site.socials.linkedin} target="_blank" rel="noopener" class="pop-item">
+            <span class="k">linkedin</span><span class="v">↗</span>
+          </a>
+          <a role="menuitem" href={site.socials.x} target="_blank" rel="noopener" class="pop-item">
+            <span class="k">x</span><span class="v">↗</span>
+          </a>
+        </div>
+      </div>
       <a href="/Imad_Charradi.vcf" class="btn ghost">save contact ↓</a>
     </div>
   </div>
@@ -120,6 +145,90 @@ import { site } from '../data/resume';
     transform: translateY(-2px);
   }
 
+  .hello-wrap {
+    position: relative;
+  }
+
+  .hello-pop {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    min-width: 230px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-hover);
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      visibility 0.18s;
+    z-index: 50;
+  }
+
+  .hello-wrap.open .hello-pop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .pop-label {
+    color: var(--accent);
+    font-size: 0.72rem;
+    padding: 6px 10px 8px;
+  }
+
+  .pop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 6px;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      background 0.15s,
+      color 0.15s;
+  }
+
+  .pop-item:hover,
+  .pop-item:focus-visible {
+    background: var(--accent-dim);
+    color: var(--accent);
+    outline: none;
+  }
+
+  .pop-item .k {
+    color: var(--text);
+  }
+
+  .pop-item:hover .k,
+  .pop-item:focus-visible .k {
+    color: var(--accent);
+  }
+
+  .pop-item .v {
+    color: var(--text-faint);
+    font-size: 0.75rem;
+  }
+
+  .pop-item:hover .v,
+  .pop-item:focus-visible .v {
+    color: var(--accent);
+  }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 36px 0;
@@ -160,3 +269,47 @@ import { site } from '../data/resume';
     color: var(--text-dim);
   }
 </style>
+
+<script define:vars={{ email: site.email }}>
+  const wrap = document.querySelector('.hello-wrap');
+  const btn = document.getElementById('hello-btn');
+  const pop = document.getElementById('hello-pop');
+  const copyBtn = document.getElementById('copy-email');
+  const copyLabel = document.getElementById('copy-label');
+
+  const setOpen = (open) => {
+    wrap?.classList.toggle('open', open);
+    btn?.setAttribute('aria-expanded', String(open));
+    if (open) pop?.querySelector('a, button')?.focus();
+  };
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!wrap?.classList.contains('open'));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (wrap && !wrap.contains(e.target)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  pop?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => setOpen(false)),
+  );
+
+  copyBtn?.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(email);
+      if (copyLabel) {
+        copyLabel.textContent = 'copied ✓';
+        setTimeout(() => (copyLabel.textContent = 'copy ⧉'), 1600);
+      }
+    } catch {
+      window.location.href = 'mailto:' + email;
+    }
+  });
+</script>
