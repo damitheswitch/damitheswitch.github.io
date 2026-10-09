@@ -2,38 +2,45 @@ export const site = {
   name: 'Imad Charradi',
   handle: 'damitheswitch',
   role: 'AI Software Engineer',
-  tagline: 'I build AI agents, computer vision systems, and the backends that tie them together.',
+  tagline: 'I build AI agents and the backend systems that tie them together.',
   description:
-    "Imad Charradi (@damitheswitch): AI software engineer building AI agents, computer vision systems, and backends. M.Sc. AI at Xidian University. Open to opportunities.",
+    "Imad Charradi (@damitheswitch): AI software engineer building AI agents and backend systems. M.Sc. AI at Xidian University. Open to opportunities.",
   location: "Xi'an, China · Morocco",
   email: 'charradiimad7@gmail.com',
   cvUrl: '/Imad_Charradi_CV.pdf',
   socials: {
     github: 'https://github.com/damitheswitch',
     linkedin: 'https://www.linkedin.com/in/imad-charradi/',
+    kaggle: 'https://www.kaggle.com/imadcharradi',
+    huggingface: 'https://huggingface.co/DAMIcn',
     x: 'https://x.com/MARCN3334/',
+  },
+  community: {
+    name: 'AIRMN',
+    repo: 'https://github.com/damitheswitch/airmn',
+    discord: 'https://discord.gg/w9jkvrNHWy',
   },
 };
 
 export const rotatorPhrases = [
-  'build AI agents.',
-  'shipped therealchina.net.',
   'am an AI grad student at Xidian.',
-  'build computer vision systems.',
-  'automate workflows end-to-end.',
+  'build multi-agent systems.',
+  'am an AI researcher.',
+  'shipped therealchina.net.',
+  'co-founded AIRMN, an AI community.',
   'am open to opportunities.',
 ];
 
 export const about = [
-  "I'm passionate about building software that feels intelligent: AI agents that automate complex workflows, computer vision models that understand live video, and backend systems that tie everything together. I enjoy taking ideas from prototype to production.",
-  "I'm currently pursuing an M.Sc. in Artificial Intelligence at Xidian University. Before that, I worked as an AI Agent Engineer in Hangzhou, building production agent systems for e-commerce automation.",
+  "I'm passionate about building software that feels intelligent: multi-agent systems that automate complex workflows, and backend systems that tie everything together. I enjoy taking ideas from prototype to production.",
+  "I'm currently pursuing an M.Sc. in Artificial Intelligence at Xidian University, where I'm exploring multi-agent systems and bio/brain-inspired computing in various fields. Before that, I worked as an AI Agent Engineer in Hangzhou, building production agent systems for e-commerce automation.",
   'Right now I\'m building The Real China, a community review platform where international students share honest takes on Chinese universities. It grew out of my own path: born in Morocco, now studying and working in China.',
+  "I also co-founded AIRMN (AI Research Moroccan Network), a global Discord community for AI researchers, students, and engineers connected to Morocco, and I'm actively helping it grow.",
 ];
 
 export const currently = [
-  'Distributed AI Systems',
-  'LLM Engineering & MLOps',
-  'Self-hosted AI Infrastructure',
+  'Multi-Agent Systems',
+  'Bio/Brain-Inspired Computing',
   'AI for Healthcare & Genomics',
 ];
 
@@ -100,6 +107,15 @@ export const projects: Project[] = [
     tags: ['TypeScript', 'Supabase', 'Netlify', 'Full-Stack'],
     repo: 'https://github.com/damitheswitch/therealchina',
     live: 'https://therealchina.net',
+  },
+  {
+    title: 'AIRMN',
+    subtitle: 'AI Community · Co-Founder',
+    description:
+      'AI Research Moroccan Network: a global community for AI researchers, students, and engineers connected to Morocco. Co-founded and actively growing it: paper discussions, conference deadline alerts, mentorship, and collaboration across institutions and career stages.',
+    tags: ['Community', 'Discord', 'AI Research'],
+    repo: 'https://github.com/damitheswitch/airmn',
+    live: 'https://discord.gg/w9jkvrNHWy',
   },
   {
     title: 'Traffic Analysis & Vehicle Detection',
@@ -204,8 +220,8 @@ export const languages = [
   { name: 'Arabic', level: 'Native' },
   { name: 'English', level: 'C1' },
   { name: 'French', level: 'C1' },
-  { name: 'Mandarin', level: 'HSK 4' },
-  { name: 'Spanish', level: 'B1' },
+  { name: 'Mandarin', level: 'HSK 3' },
+  { name: 'Spanish', level: 'A2' },
   { name: 'German', level: 'Elementary' },
 ];
 
