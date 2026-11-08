@@ -4,6 +4,7 @@ import { site } from '../data/resume';
 const links = [
   { href: '#about', label: 'about' },
   { href: '#experience', label: 'experience' },
+  { href: '#publications', label: 'publications' },
   { href: '#projects', label: 'projects' },
   { href: '#skills', label: 'skills' },
   { href: '#education', label: 'education' },
@@ -171,7 +172,14 @@ const links = [
     color: var(--accent);
   }
 
-  @media (max-width: 820px) {
+  @media (min-width: 1041px) and (max-width: 1180px) {
+    .links {
+      gap: 20px;
+    }
+  }
+
+  /* 7 links + resume button no longer fit a row below ~1040px */
+  @media (max-width: 1040px) {
     .menu-btn {
       display: flex;
     }

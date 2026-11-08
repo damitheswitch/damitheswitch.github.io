@@ -27,6 +27,7 @@ export const rotatorPhrases = [
   'build multi-agent systems.',
   'am an AI researcher.',
   'shipped therealchina.net.',
+  'co-authored a paper on LLM memory.',
   'co-founded AIRMN, an AI community.',
   'am open to opportunities.',
 ];
@@ -35,7 +36,7 @@ export const about = [
   "I'm passionate about building software that feels intelligent: multi-agent systems that automate complex workflows, and backend systems that tie everything together. I enjoy taking ideas from prototype to production.",
   "I'm currently pursuing an M.Sc. in Artificial Intelligence at Xidian University, where I'm exploring multi-agent systems and bio/brain-inspired computing in various fields. Before that, I worked as an AI Agent Engineer in Hangzhou, building production agent systems for e-commerce automation.",
   'Right now I\'m building The Real China, a community review platform where international students share honest takes on Chinese universities. It grew out of my own path: born in Morocco, now studying and working in China.',
-  "I also co-founded AIRMN (AI Research Moroccan Network), a global Discord community for AI researchers, students, and engineers connected to Morocco, and I'm actively helping it grow.",
+  "I also co-founded AIRMN (AI Research Moroccan Network), a global Discord community for AI researchers, students, and engineers connected to Morocco. It has grown to 100+ active contributors, and our multi-agent LLM paper came out of a collaboration inside the community.",
 ];
 
 export const currently = [
@@ -89,6 +90,67 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
+export interface Publication {
+  title: string;
+  authors: string[];
+  venue: string;
+  year: string;
+  url: string;
+  note?: string;
+}
+
+export const publications: Publication[] = [
+  {
+    title: 'Rare, Relevant, and Still Wrong: How Memory Fails LLM Group Decisions',
+    authors: ['Anouar Imel', 'Imad Charradi', 'Abderrahman Sghir', 'Khalil El Khammar'],
+    venue: 'arXiv preprint arXiv:2610.37624',
+    year: '2026',
+    url: 'https://arxiv.org/abs/2610.37624',
+    note: 'This is v1. An improved version is in preparation and will be posted after conference submission.',
+  },
+];
+
+export interface OpenSourceItem {
+  title: string;
+  year: string;
+  description: string;
+  url: string;
+  tags: string[];
+}
+
+export const openSource: OpenSourceItem[] = [
+  {
+    title: 'china-universities',
+    year: '2026',
+    description:
+      'Open dataset of 582 Chinese universities: names, location, 985/211 tags, rankings, and crests. 1,200+ downloads across Hugging Face and Kaggle.',
+    url: 'https://huggingface.co/datasets/DAMIcn/china-universities',
+    tags: ['Dataset', 'Hugging Face', 'Kaggle'],
+  },
+];
+
+export interface Award {
+  title: string;
+  org: string;
+  year: string;
+  note?: string;
+}
+
+export const awards: Award[] = [
+  {
+    title: 'First-class Huashan Excellence Scholarship',
+    org: 'Xidian University',
+    year: '2026',
+    note: '4 recipients school-wide',
+  },
+  {
+    title: 'Merit-based scholarship',
+    org: 'China Jiliang University',
+    year: '2022 - 2026',
+    note: 'Awarded four years in a row',
+  },
+];
+
 export interface Project {
   title: string;
   subtitle?: string;
@@ -109,10 +171,17 @@ export const projects: Project[] = [
     live: 'https://therealchina.net',
   },
   {
+    title: 'Epigenetic Age Prediction: MAPLE Study',
+    subtitle: 'DNA Methylation · In Progress',
+    description:
+      'Review and reproduction of MAPLE (Zhang et al., Nature Computational Science, 2026), a pairwise-learning epigenetic age predictor. Analyzing where its robustness comes from and how to use it at inference. Medical Information Processing course project.',
+    tags: ['DNA Methylation', 'Pairwise Learning', 'Python', 'Reproduction'],
+  },
+  {
     title: 'AIRMN',
     subtitle: 'AI Community · Co-Founder',
     description:
-      'AI Research Moroccan Network: a global community for AI researchers, students, and engineers connected to Morocco. Co-founded and actively growing it: paper discussions, conference deadline alerts, mentorship, and collaboration across institutions and career stages.',
+      'AI Research Moroccan Network: a global community for AI researchers, students, and engineers connected to Morocco. Co-founded and grown to 100+ active contributors: paper discussions, conference deadline alerts, mentorship, and collaboration across institutions. Our multi-agent LLM paper stemmed from it.',
     tags: ['Community', 'Discord', 'AI Research'],
     repo: 'https://github.com/damitheswitch/airmn',
     live: 'https://discord.gg/w9jkvrNHWy',
@@ -166,11 +235,15 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: 'AI, ML & Computer Vision',
-    items: ['PyTorch', 'TensorFlow', 'OpenCV', 'YOLO', 'Scikit-learn', 'XGBoost', 'Feature Engineering'],
+    items: ['PyTorch', 'vLLM', 'TensorFlow', 'OpenCV', 'YOLO', 'Scikit-learn', 'XGBoost', 'Feature Engineering'],
   },
   {
     label: 'LLMs & Agent Systems',
-    items: ['AI Agent Development', 'Multi-Agent Systems', 'RAG', 'LLM Integration', 'Vector Databases', 'Embeddings', 'Prompt Engineering', 'n8n'],
+    items: ['AI Agent Development', 'Multi-Agent Systems', 'Qwen / Llama / DeepSeek', 'RAG', 'LLM Integration', 'Vector Databases', 'Embeddings', 'Prompt Engineering', 'n8n'],
+  },
+  {
+    label: 'Research Methods',
+    items: ['LLM Evaluation', 'Benchmark Design', 'Ablations', 'Bootstrap Statistics'],
   },
   {
     label: 'Backend & Systems',
@@ -211,21 +284,26 @@ export const education: Education[] = [
 export const certificates = [
   { name: 'Machine Learning Specialization', issuer: 'Coursera · Andrew Ng', date: 'Jul 2026' },
   { name: 'Intermediate Machine Learning', issuer: 'Kaggle', date: 'Sep 2025' },
-  { name: 'Back-End Web Development', issuer: 'ALX Academy', date: 'Apr 2025' },
-  { name: 'ALX Foundations', issuer: 'ALX Africa', date: 'Sep 2024' },
+  { name: 'Back-End Web Development and Foundations', issuer: 'ALX Academy', date: 'Apr 2025' },
+  { name: 'Seminar on Quality Infrastructure Construction and Connectivity', issuer: 'SAMRDRC · Certificate of Achievement', date: '2024' },
   { name: 'Responsive Web Design', issuer: 'freeCodeCamp', date: 'Aug 2024' },
+  { name: 'Open P-TECH for Africa', issuer: 'INJAZ Al-Maghrib · Junior Achievement Worldwide', date: '2021' },
 ];
 
 export const languages = [
   { name: 'Arabic', level: 'Native' },
   { name: 'English', level: 'C1' },
-  { name: 'French', level: 'C1' },
+  { name: 'French', level: 'B2' },
   { name: 'Mandarin', level: 'HSK 3' },
-  { name: 'Spanish', level: 'A2' },
-  { name: 'German', level: 'Elementary' },
 ];
 
 export const volunteering = [
+  {
+    role: 'Co-Founder',
+    org: 'AIRMN · AI Research Moroccan Network',
+    period: 'Oct 2026 - Present',
+    description: 'Online community for AI researchers connected to Morocco. Grew it to 100+ active contributors; the multi-agent LLM paper stemmed from a collaboration within it.',
+  },
   {
     role: 'Project Leader',
     org: 'ENACTUS · Faculté des Sciences Appliquées Ait Melloul',

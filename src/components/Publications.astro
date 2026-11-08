@@ -1,0 +1,163 @@
+---
+import { publications, openSource, site } from '../data/resume';
+---
+
+<section id="publications">
+  <div class="container">
+    <p class="section-label">03 · publications</p>
+    <h2 class="section-title">Research &amp; open source</h2>
+
+    <h3 class="col-label">papers and preprints</h3>
+    <div class="papers">
+      {
+        publications.map((p) => (
+          <article class="paper reveal">
+            <h4>
+              <a href={p.url} target="_blank" rel="noopener">
+                {p.title}
+              </a>
+            </h4>
+            <p class="authors">
+              {p.authors.map((a, i) => (
+                <>
+                  <span class:list={[{ me: a === site.name }]}>{a}</span>
+                  {i < p.authors.length - 1 && ', '}
+                </>
+              ))}
+            </p>
+            <p class="venue">
+              {p.venue} · {p.year}
+            </p>
+            {p.note && <p class="note">{p.note}</p>}
+          </article>
+        ))
+      }
+    </div>
+
+    <h3 class="col-label gap">open source</h3>
+    <div class="papers">
+      {
+        openSource.map((o) => (
+          <article class="paper reveal">
+            <h4>
+              <a href={o.url} target="_blank" rel="noopener">
+                {o.title}
+              </a>
+              <span class="year">{o.year}</span>
+            </h4>
+            <p class="desc">{o.description}</p>
+            <ul class="tags">
+              {o.tags.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .col-label {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .col-label.gap {
+    margin-top: 44px;
+  }
+
+  .papers {
+    display: grid;
+    gap: 22px;
+  }
+
+  .paper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px;
+    transition:
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .paper:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .paper h4 {
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .paper h4 a {
+    color: var(--text);
+    transition: color 0.2s;
+  }
+
+  .paper h4 a:hover {
+    color: var(--accent);
+  }
+
+  .year {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .authors {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-top: 10px;
+  }
+
+  .me {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .venue {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .note {
+    color: var(--text-faint);
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+
+  .desc {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-top: 10px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin-top: 16px;
+  }
+
+  .tags li {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+</style>
