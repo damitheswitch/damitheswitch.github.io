@@ -7,7 +7,6 @@ export const site = {
     "Imad Charradi (@damitheswitch): AI software engineer building AI agents and backend systems. M.Sc. AI at Xidian University. Open to opportunities.",
   location: "Xi'an, China · Morocco",
   email: 'charradiimad7@gmail.com',
-  cvUrl: '/Imad_Charradi_CV.pdf',
   socials: {
     github: 'https://github.com/damitheswitch',
     linkedin: 'https://www.linkedin.com/in/imad-charradi/',

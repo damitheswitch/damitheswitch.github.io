@@ -34,7 +34,7 @@ const links = [
         ))
       }
       <li>
-        <a href={site.cvUrl} class="cv-btn" target="_blank" rel="noopener"> resume.pdf </a>
+        <span class="cv-btn cv-stale" aria-disabled="true">resume · updating soon</span>
       </li>
     </ul>
   </nav>
@@ -117,6 +117,14 @@ const links = [
   .cv-btn:hover {
     background: var(--accent-dim);
     transform: translateY(-1px);
+  }
+
+  .cv-stale,
+  .cv-stale:hover {
+    cursor: default;
+    opacity: 0.6;
+    background: none;
+    transform: none;
   }
 
   .menu-btn {

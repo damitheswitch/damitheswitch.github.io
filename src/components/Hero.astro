@@ -32,12 +32,7 @@ import { site, rotatorPhrases } from '../data/resume';
 
       <div class="ctas">
         <a href="#projects" class="btn primary">view projects</a>
-        <a href={site.cvUrl} class="btn ghost" target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          resume.pdf
-        </a>
+        <span class="btn ghost stale" aria-disabled="true">resume · updating soon</span>
       </div>
 
       <div class="socials">
@@ -245,6 +240,15 @@ import { site, rotatorPhrases } from '../data/resume';
     border-color: var(--accent);
     color: var(--accent);
     transform: translateY(-2px);
+  }
+
+  .btn.stale,
+  .btn.stale:hover {
+    cursor: default;
+    opacity: 0.6;
+    border-color: var(--border-hover);
+    color: var(--text-dim);
+    transform: none;
   }
 
   .socials {
